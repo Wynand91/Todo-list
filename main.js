@@ -1,17 +1,26 @@
 const todo = {
-  todos: ['eet', 'code', 'slaap'],
+  todos: [],
 
   displayTodos: function () {
     console.log(this.todos);
   },
 
-  addTodo: function (task) {
-    this.todos.push(task);
+  addTodo: function (todoText) {
+    this.todos.push({
+      todoText: todoText,
+      completed: false
+    });
     this.displayTodos();
   },
 
-  changeTodo: function (index, newTask) {
-    this.todos[index] = newTask;
+  changeTodo: function (index, todoText) {
+    this.todos[index].todoText = todoText;
+    this.displayTodos();
+  },
+
+  toggleCompleted: function (index) {
+    const todo = this.todos[index];
+    todo.completed = !todo.completed;
     this.displayTodos();
   },
 
