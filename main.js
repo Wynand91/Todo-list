@@ -69,3 +69,14 @@ const todo = {
 
   }
 };
+
+const displayButton = document.getElementById('displayTodosButton');
+const toggleAllButton = document.getElementById('toggleAllButton');
+
+displayButton.addEventListener('click', function() {
+  todo.displayTodos();
+});
+
+toggleAllButton.addEventListener('click', function() {
+  todo.toggleAll();
+});
