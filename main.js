@@ -2,12 +2,11 @@ const todo = {
   todos: [],
 
   displayTodos: function () {
-
     if (this.todos.length === 0) {
       console.log("Your todo list is empty!");
     } else {
       for (let i = 0; i < this.todos.length; i++) {
-        if(this.todos[i].completed === true) {
+        if (this.todos[i].completed === true) {
           console.log("(X) " + this.todos[i].todoText);
         } else {
           console.log("() " + this.todos[i].todoText);
@@ -70,13 +69,38 @@ const todo = {
   }
 };
 
-const displayButton = document.getElementById('displayTodosButton');
-const toggleAllButton = document.getElementById('toggleAllButton');
+const handlers = {
+  displayTodos: function () {
+    todo.displayTodos();
+  },
 
-displayButton.addEventListener('click', function() {
-  todo.displayTodos();
-});
+  addTodo: function () {
+    const addInputText = document.getElementById('addInput');
+    todo.addTodo(addInputText.value);
+    addInputText.value = '';
+  },
 
-toggleAllButton.addEventListener('click', function() {
-  todo.toggleAll();
-});
+  changeTodo: function () {
+    const changeTodoIndex = document.getElementById("changeTodoIndex");
+    const changeTodoText = document.getElementById("changeTodotext");
+    todo.changeTodo(changeTodoIndex.valueAsNumber, changeTodoText.value);
+    changeTodoIndex.value = '';
+    changeTodoText.value = '';
+  },
+
+  deleteTodo: function () {
+    const deleteIndex = document.getElementById("deleteIndex");
+    todo.deleteTodo(deleteIndex.valueAsNumber);
+    deleteIndex.value = '';
+  },
+
+  toggleCompleted: function () {
+    const toggleIndex = document.getElementById("toggleCompletedIndex");
+    todo.toggleCompleted(toggleIndex.valueAsNumber);
+    toggleIndex.value = '';
+  },
+
+  toggleAll: function () {
+    todo.toggleAll();
+  }
+};
